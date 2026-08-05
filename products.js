@@ -1,0 +1,231 @@
+/*
+  ====================================================
+  商品資料檔（可隨時編輯替換）
+  ====================================================
+  只要修改這個檔案，網頁內容就會自動更新，不需要動 index.html。
+
+  每一筆商品欄位說明：
+    category    分類，必須跟下面 CATEGORIES 清單裡的 id 對應
+    brand       品牌名稱
+    name        商品名稱
+    spec        規格／容量
+    price       售價（數字，不用打 NT$）
+    originalPrice  原價（選填。若有填，會顯示劃線原價 + 折扣標籤；不需要就整行刪掉或設 null）
+    note        備註（選填，例如「新品」「熱銷」「限量」）
+    image       圖片檔名，圖片放在 images 資料夾裡
+    desc        產品簡介（點擊圖片時彈出的介紹文字，可自行改寫）
+
+  ※ 目前售價為「示意範例」，請自行改成實際售價。
+  ※ desc 產品簡介為初稿文字，建議依實際商品資訊確認後再對外使用。
+  ====================================================
+*/
+
+const CATEGORIES = [
+  { id: "shampoo",    name: "洗髮 Shampoo" },
+  { id: "conditioner",name: "潤髮 Conditioner" },
+  { id: "treatment",  name: "護髮膜 Treatment" },
+  { id: "leave-in",   name: "免沖洗 / 精華油 Leave-in & Oil" },
+  { id: "styling",    name: "造型 Styling" },
+  { id: "scalp",      name: "頭皮養護 Scalp Care" },
+];
+
+const PRODUCTS = [
+  // ---------- 洗髮 Shampoo ----------
+  {
+    category: "shampoo",
+    brand: "óben",
+    name: "Le bonheur Paris High Wall 洗髮精",
+    spec: "800ml",
+    price: 1280,
+    originalPrice: null,
+    note: "",
+    image: "oben-paris-highwall-shampoo.jpg",
+    desc: "以玫瑰、烏木香調為主的法式洗髮精，溫和潔淨頭皮同時保留髮絲光澤，適合日常使用。",
+  },
+  {
+    category: "shampoo",
+    brand: "óben",
+    name: "Le bonheur Luxembourg Gardens 洗髮精",
+    spec: "800ml",
+    price: 1280,
+    originalPrice: 1480,
+    note: "",
+    image: "oben-luxembourg-shampoo.jpg",
+    desc: "茶香、紫羅蘭與佛手柑調香，洗感清爽不緊繃，帶來如漫步花園般的沐髮體驗。",
+  },
+  {
+    category: "shampoo",
+    brand: "TOKIO INKARAMI",
+    name: "PREMIUM 洗髮精",
+    spec: "400ml",
+    price: 980,
+    originalPrice: null,
+    note: "熱銷",
+    image: "tokio-inkarami-shampoo.jpg",
+    desc: "TOKIO INKARAMI 系列洗髮精，溫和清潔的同時為後續護髮膜做好吸收準備，沙龍護髮療程首選。",
+  },
+  {
+    category: "shampoo",
+    brand: "EDNA",
+    name: "保濕洗髮精 Ribes Rubrum",
+    spec: "500ml",
+    price: 880,
+    originalPrice: null,
+    note: "",
+    image: "edna-ribes-rubrum-shampoo.webp",
+    desc: "紅醋栗香調保濕洗髮精，平衡頭皮油水、滋養髮絲，適合乾燥、缺水髮質。",
+  },
+  {
+    category: "shampoo",
+    brand: "EDNA",
+    name: "順滑洗髮精 Citrus Limon",
+    spec: "500ml",
+    price: 880,
+    originalPrice: null,
+    note: "",
+    image: "edna-citrus-limon-shampoo.webp",
+    desc: "檸檬清香順滑洗髮精，幫助理順毛鱗片、減少打結，洗後髮絲滑順好整理。",
+  },
+  {
+    category: "shampoo",
+    brand: "EDNA",
+    name: "頭皮活化洗髮精 Mint Therapy",
+    spec: "500ml",
+    price: 920,
+    originalPrice: 1020,
+    note: "",
+    image: "edna-mint-therapy-shampoo.webp",
+    desc: "薄荷頭皮活化洗髮精，清涼感潔淨毛孔、舒緩頭皮，適合油性頭皮或想要清爽感的顧客。",
+  },
+
+  // ---------- 潤髮 Conditioner ----------
+  {
+    category: "conditioner",
+    brand: "óben",
+    name: "Le bonheur Tuileries Garden 潤髮乳",
+    spec: "500ml",
+    price: 1180,
+    originalPrice: null,
+    note: "",
+    image: "oben-tuileries-conditioner.jpg",
+    desc: "鈴蘭、茉莉與柑橘香調潤髮乳，滋潤髮尾、增加柔順度，與同系列洗髮精搭配使用效果更佳。",
+  },
+
+  // ---------- 護髮膜 Treatment ----------
+  {
+    category: "treatment",
+    brand: "TOKIO INKARAMI",
+    name: "PREMIUM 護髮膜",
+    spec: "400g",
+    price: 1580,
+    originalPrice: null,
+    note: "招牌",
+    image: "tokio-inkarami-treatment.jpg",
+    desc: "沙龍等級深層護髮膜，修護受損髮絲結構、補充蛋白質與水分，打造柔順有光澤的髮質。",
+  },
+  {
+    category: "treatment",
+    brand: "TOKIO INKARAMI",
+    name: "居家護髮膜 HOME",
+    spec: "180g",
+    price: 1280,
+    originalPrice: 1480,
+    note: "",
+    image: "tokio-inkarami-home.png",
+    desc: "居家版護髮膜，延續沙龍護髮效果，建議每週使用 1-2 次維持髮質柔順與光澤。",
+  },
+
+  // ---------- 免沖洗 / 精華油 Leave-in & Oil ----------
+  {
+    category: "leave-in",
+    brand: "napla N.",
+    name: "SHEA OIL 乳木果護髮油",
+    spec: "150ml",
+    price: 880,
+    originalPrice: null,
+    note: "",
+    image: "napla-n-shea-oil.jpg",
+    desc: "有機乳木果油配方，滋潤修護毛躁髮尾，賦予自然光澤與柔順觸感，吹整前後皆可使用。",
+  },
+  {
+    category: "leave-in",
+    brand: "Purifica MiL",
+    name: "護髮精華液",
+    spec: "120ml",
+    price: 780,
+    originalPrice: null,
+    note: "",
+    image: "purifica-mil-essence.jpg",
+    desc: "免沖洗護髮精華液，質地清爽好吸收，修護毛鱗片、防止分岔，適合日常保養使用。",
+  },
+  {
+    category: "leave-in",
+    brand: "TOKIO",
+    name: "OUTKARAMI PREMIUM AIR.TR 外油",
+    spec: "100ml",
+    price: 1380,
+    originalPrice: null,
+    note: "新品",
+    image: "tokio-outkarami-airtr.jpg",
+    desc: "TOKIO 外油系列，質地輕盈不厚重，修飾毛躁、增加髮絲柔軟度與光澤感，適合造型前使用。",
+  },
+  {
+    category: "leave-in",
+    brand: "milk_shake",
+    name: "Whipped Cream 免沖洗慕斯（花香）",
+    spec: "200ml",
+    price: 780,
+    originalPrice: null,
+    note: "",
+    image: "milkshake-whipped-cream-flower.jpg",
+    desc: "花香免沖洗慕斯，含大豆蛋白與辣木籽萃取，蓬鬆質地保濕護色，適合所有髮質。",
+  },
+  {
+    category: "leave-in",
+    brand: "milk_shake",
+    name: "Silver Shine 紫控色慕斯",
+    spec: "200ml",
+    price: 820,
+    originalPrice: 920,
+    note: "",
+    image: "milkshake-silver-shine.png",
+    desc: "紫控色慕斯，中和挑染／漂髮後的黃橘色調，維持銀灰髮色乾淨透亮。",
+  },
+
+  // ---------- 造型 Styling ----------
+  {
+    category: "styling",
+    brand: "napla N.",
+    name: "HOLD SPRAY 5 定型噴霧",
+    spec: "170g",
+    price: 680,
+    originalPrice: null,
+    note: "",
+    image: "napla-n-hold-spray.png",
+    desc: "有機定型噴霧，強力持久定型不僵硬，維持自然蓬鬆感與造型持久度。",
+  },
+  {
+    category: "styling",
+    brand: "Qufra",
+    name: "Rough Ridge Whip 蓬鬆造型慕斯",
+    spec: "200g",
+    price: 720,
+    originalPrice: null,
+    note: "",
+    image: "qufra-rough-ridge-whip.jpg",
+    desc: "蓬鬆感造型慕斯，打造自然粗糙質感與空氣感層次，適合短髮、瀏海造型使用。",
+  },
+
+  // ---------- 頭皮養護 Scalp Care ----------
+  {
+    category: "scalp",
+    brand: "VIRTUE",
+    name: "Flourish Density Booster 密度養髮精華",
+    spec: "120ml",
+    price: 2280,
+    originalPrice: null,
+    note: "限量",
+    image: "virtue-flourish-density-booster.png",
+    desc: "含 Alpha Keratin 60ku 專利角蛋白技術，刺激頭皮健康、強化髮根，適合髮量稀疏或想增加豐盈感的顧客。",
+  },
+];
