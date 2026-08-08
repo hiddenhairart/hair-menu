@@ -36,7 +36,7 @@ const PRODUCTS = [
     brand: "óben",
     name: "Le bonheur Paris High Wall 洗髮精",
     spec: "800ml",
-    price: 1280,
+    price: 999,
     originalPrice: null,
     note: "",
     image: "oben-paris-highwall-shampoo.jpg",
