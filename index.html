@@ -6,14 +6,14 @@
 <title>髮品電子菜單</title>
 <style>
   :root{
-    --bg:#141210;
-    --panel:#1c1917;
-    --card:#211d1a;
-    --gold:#c9a35c;
+    --bg:#ffffff;
+    --panel:#fafaf9;
+    --card:#ffffff;
+    --gold:#b8935a;
     --gold-soft:#8d7647;
-    --text:#f3ede4;
-    --text-dim:#a89f92;
-    --line:#332d27;
+    --text:#333333;
+    --text-dim:#828282;
+    --line:#e5e2dc;
     --danger:#b5563e;
   }
   *{box-sizing:border-box;}
@@ -57,7 +57,7 @@
     gap:8px;
     justify-content:center;
     padding:16px 20px;
-    background:rgba(20,18,16,.92);
+    background:rgba(255,255,255,.92);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
   }
@@ -113,11 +113,13 @@
     display:flex;
     flex-direction:column;
     position:relative;
-    transition:transform .2s, border-color .2s;
+    box-shadow:0 1px 4px rgba(0,0,0,.04);
+    transition:transform .2s, border-color .2s, box-shadow .2s;
   }
   .card:hover{
     transform:translateY(-4px);
     border-color:var(--gold-soft);
+    box-shadow:0 10px 24px rgba(0,0,0,.08);
   }
   .card .badge{
     position:absolute;
@@ -145,6 +147,7 @@
   }
   .card .img-wrap{
     background:#fff;
+    border-bottom:1px solid var(--line);
     height:220px;
     display:flex;
     align-items:center;
@@ -220,7 +223,7 @@
   .modal-overlay{
     position:fixed;
     inset:0;
-    background:rgba(10,9,8,.82);
+    background:rgba(30,28,26,.55);
     display:none;
     align-items:center;
     justify-content:center;
@@ -241,6 +244,7 @@
     display:flex;
     flex-direction:column;
     position:relative;
+    box-shadow:0 24px 60px rgba(0,0,0,.18);
   }
   .modal .modal-close{
     position:absolute;
@@ -261,6 +265,7 @@
   }
   .modal .modal-img{
     background:#fff;
+    border-bottom:1px solid var(--line);
     padding:30px;
     display:flex;
     align-items:center;
