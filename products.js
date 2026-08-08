@@ -40,7 +40,7 @@ const PRODUCTS = [
     originalPrice: null,
     note: "",
     image: "oben-paris-highwall-shampoo.jpg",
-    desc: "以玫瑰、烏木香調為主的法式洗髮精，溫和潔淨頭皮同時保留髮絲光澤，適合日常使用。",
+    desc: "保護毛鱗片、補充頭髮缺失的水分，保濕鎖色，增加髮絲韌度，減少分岔及斷裂。",
   },
   {
     category: "shampoo",
@@ -51,7 +51,7 @@ const PRODUCTS = [
     originalPrice: 1480,
     note: "",
     image: "oben-luxembourg-shampoo.jpg",
-    desc: "茶香、紫羅蘭與佛手柑調香，洗感清爽不緊繃，帶來如漫步花園般的沐髮體驗。",
+    desc: "鎮定舒緩頭皮敏感不適，減少換季時頭皮乾癢帶來的刺激感。",
   },
   {
     category: "shampoo",
@@ -108,7 +108,7 @@ const PRODUCTS = [
     originalPrice: null,
     note: "",
     image: "oben-tuileries-conditioner.jpg",
-    desc: "鈴蘭、茉莉與柑橘香調潤髮乳，滋潤髮尾、增加柔順度，與同系列洗髮精搭配使用效果更佳。",
+    desc: "與髮絲表面角蛋白緊密結合，保護毛鱗片、補充水分，減少分岔。",
   },
 
   // ---------- 護髮膜 Treatment ----------
@@ -145,7 +145,7 @@ const PRODUCTS = [
     originalPrice: null,
     note: "",
     image: "napla-n-shea-oil.jpg",
-    desc: "有機乳木果油配方，滋潤修護毛躁髮尾，賦予自然光澤與柔順觸感，吹整前後皆可使用。",
+    desc: "蘊含乳油木果油、馬魯拉果油及高壓處理種子油，適合受損髮質的免沖洗護髮，推薦細軟髮質使用。",
   },
   {
     category: "leave-in",
@@ -226,6 +226,6 @@ const PRODUCTS = [
     originalPrice: null,
     note: "限量",
     image: "virtue-flourish-density-booster.png",
-    desc: "含 Alpha Keratin 60ku 專利角蛋白技術，刺激頭皮健康、強化髮根，適合髮量稀疏或想增加豐盈感的顧客。",
+    desc: "為疲勞的毛囊補充能量，滋養脆弱及新生髮，使髮絲增厚並茁壯生長。",
   },
 ];
