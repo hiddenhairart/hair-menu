@@ -89,10 +89,10 @@ const PRODUCTS = [
   {
     category: "shampoo",
     brand: "EDNA",
-    name: "頭皮活化洗髮精 Mint Therapy",
+    name: "蘊頭皮活化洗髮精 Mint Therapy",
     spec: "500ml",
-    price: 920,
-    originalPrice: 1020,
+    price: 980,
+    originalPrice: 980,
     note: "",
     image: "edna-mint-therapy-shampoo.webp",
     desc: "薄荷頭皮活化洗髮精，清涼感潔淨毛孔、舒緩頭皮，適合油性頭皮或想要清爽感的顧客。",
