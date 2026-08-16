@@ -219,7 +219,7 @@ const PRODUCTS = [
     category: "styling",
     brand: "LABEL.M",
     name: "捲捲活力凝露",
-    spec: "200ml",
+    spec: "250ml",
     price: 1200,
     originalPrice: null,
     note: "",
