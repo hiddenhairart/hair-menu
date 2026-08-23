@@ -511,9 +511,9 @@ const PRODUCTS = [
   {
     category: "color",
     brand: "FIOLE",
-    name: "露西亞增色髮露-奶霜棕250ML",
-    spec: "250ml",
-    price: 800,
+    name: "露西亞增色髮露-奶霜棕250ML/1000ML",
+    spec: "250ml/1000ml",
+    price: 800/1050,
     originalPrice: null,
     note: "",
     image: "L9.jpg",
