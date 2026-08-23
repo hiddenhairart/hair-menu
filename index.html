@@ -367,21 +367,44 @@
     return Number(n).toLocaleString('en-US');
   }
 
-  function renderCard(p){
+  // 整理一個商品要顯示的規格文字／價格文字／折扣資訊。
+  // 一般商品（單一容量、單一價格）：讀 spec / price / originalPrice。
+  // 多容量商品（例如 250ML/1000ML 兩種價格）：讀 variants 陣列，自動組成
+  // 「250ML / 1000ML」「NT$ 800 / 1,050」，這類商品目前不顯示折扣標籤。
+  function getDisplay(p){
+    if(p.variants && p.variants.length){
+      return {
+        specText: p.variants.map(v => v.spec).join(' / '),
+        priceText: p.variants.map(v => money(v.price)).join(' / '),
+        hasDiscount: false,
+        discountPct: null,
+        originalText: ''
+      };
+    }
     const hasDiscount = p.originalPrice && p.originalPrice > p.price;
-    const discountPct = hasDiscount ? Math.round((p.price / p.originalPrice) * 10) : null;
+    return {
+      specText: p.spec,
+      priceText: money(p.price),
+      hasDiscount,
+      discountPct: hasDiscount ? Math.round((p.price / p.originalPrice) * 10) : null,
+      originalText: hasDiscount ? money(p.originalPrice) : ''
+    };
+  }
+
+  function renderCard(p){
+    const d = getDisplay(p);
     return `
       <div class="card">
         ${p.note ? `<div class="badge">${p.note}</div>` : ''}
-        ${hasDiscount ? `<div class="discount-badge">${discountPct}折</div>` : ''}
+        ${d.hasDiscount ? `<div class="discount-badge">${d.discountPct}折</div>` : ''}
         <div class="img-wrap" data-image="${p.image}"><img src="images/${p.image}" alt="${p.brand} ${p.name}" loading="lazy"></div>
         <div class="info">
           <div class="brand">${p.brand}</div>
           <div class="name">${p.name}</div>
-          <div class="spec">${p.spec}</div>
+          <div class="spec">${d.specText}</div>
           <div class="price-row">
-            <span class="price">${money(p.price)}</span>
-            ${hasDiscount ? `<span class="original">NT$ ${money(p.originalPrice)}</span>` : ''}
+            <span class="price">${d.priceText}</span>
+            ${d.hasDiscount ? `<span class="original">NT$ ${d.originalText}</span>` : ''}
           </div>
         </div>
       </div>`;
@@ -392,14 +415,14 @@
   const modalClose = document.getElementById('modal-close');
 
   function openModal(p){
-    const hasDiscount = p.originalPrice && p.originalPrice > p.price;
+    const d = getDisplay(p);
     document.getElementById('modal-img').src = 'images/' + p.image;
     document.getElementById('modal-img').alt = p.brand + ' ' + p.name;
     document.getElementById('modal-brand').textContent = p.brand;
     document.getElementById('modal-name').textContent = p.name;
-    document.getElementById('modal-spec').textContent = p.spec;
-    document.getElementById('modal-price').textContent = money(p.price);
-    document.getElementById('modal-original').textContent = hasDiscount ? ('NT$ ' + money(p.originalPrice)) : '';
+    document.getElementById('modal-spec').textContent = d.specText;
+    document.getElementById('modal-price').textContent = d.priceText;
+    document.getElementById('modal-original').textContent = d.hasDiscount ? ('NT$ ' + d.originalText) : '';
     document.getElementById('modal-desc').textContent = p.desc || '（尚未填寫產品簡介，可至 products.js 的 desc 欄位補上）';
     overlay.classList.add('open');
   }
