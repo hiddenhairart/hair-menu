@@ -33,7 +33,9 @@ const CATEGORIES = [
 
 const PRODUCTS = [
   // ---------- 洗髮 Shampoo ----------
-   {
+
+
+{
     category: "shampoo",
     brand: "EDNA",
     name: "賦檸洗髮露 500ML",
@@ -41,8 +43,8 @@ const PRODUCTS = [
     price: 980,
     originalPrice: null,
     note: "",
-    image: "S2",
-    desc: "專為敏感頭皮設計，採用專利發酵萃取，溫美淨化頭皮、減少皮脂累積，並搭配辛醯基甘氨酸平衡頭皮微生態。燕麥生物鹼，有效舒緩不適，維持頭皮健康穩定。",
+    image: "S2.webp",
+    desc: "專為敏感頭皮設計，採用專利發酵萃取，溫和淨化頭皮、減少皮脂累積，並搭配辛醯基甘氨酸平衡頭皮微生態。燕麥生物鹼，有效舒緩不適，維持頭皮健康穩定。",
   },
   {
     category: "shampoo",
@@ -52,7 +54,7 @@ const PRODUCTS = [
     price: 980,
     originalPrice: null,
     note: "",
-    image: "S4",
+    image: "S4.webp",
     desc: "Procapil專利活性成份，強健髮根活絡毛髮，防止毛髮斷裂；九合一植萃強化頭皮屏障，抵禦污染；咖啡因滋養活力，全面活化頭皮和髮絲健康。",
   },
   {
@@ -63,8 +65,8 @@ const PRODUCTS = [
     price: 850,
     originalPrice: null,
     note: "",
-    image: "S1",
-    desc: "秘魯龍血萃取修複屏障，改善乾燥；天然認證鼠尾草籽萃取，預防化學損傷破壞頭髮的蛋白鏈結，合成仿生角質層有助為維持髮質；有機蠟菊萃取液深層滋養秀髮，恢復毛囊活力。使髮絲水潤強韌不易斷裂。",
+    image: "S1.webp",
+    desc: "秘魯龍血萃取修復屏障，改善乾燥；天然認證鼠尾草籽萃取，預防化學損傷破壞頭髮的蛋白鏈結，合成仿生角質層有助為維持髮質；有機蠟菊萃取液深層滋養秀髮，恢復毛囊活力。使髮絲水潤強韌不易斷裂。",
   },
   {
     category: "shampoo",
@@ -74,7 +76,7 @@ const PRODUCTS = [
     price: 1500,
     originalPrice: null,
     note: "",
-    image: "S9",
+    image: "S9.jpg",
     desc: "主打保濕抗氧化與蓬鬆空氣感。核心成分包含水解小麥蛋白、醣基海藻糖、蠟菊萃取液及維他命B5，能深度滋潤並增加髮絲強韌度。",
   },
   {
@@ -85,7 +87,7 @@ const PRODUCTS = [
     price: 2200,
     originalPrice: null,
     note: "",
-    image: "S17",
+    image: "S17.jpg",
     desc: "輕度受損髮專用，使用牛磺酸的低刺激胺基酸類髮浴，打造柔順、有光澤的輕盈髮質。",
   },
   {
@@ -96,7 +98,7 @@ const PRODUCTS = [
     price: 2700,
     originalPrice: null,
     note: "",
-    image: "S16",
+    image: "S16.jpg",
     desc: "高度受損髮專用，使用絲蛋白與膠原蛋白清潔成分的胺基酸型髮浴，重建髮絲的強韌質感。",
   },
   {
@@ -107,7 +109,7 @@ const PRODUCTS = [
     price: 1500,
     originalPrice: null,
     note: "",
-    image: "S10",
+    image: "S10.jpg",
     desc: "針對油性、容易扁塌的頭皮與髮絲設計，強調深度清潔毛孔並有效收斂多餘油脂。",
   },
   {
@@ -118,7 +120,7 @@ const PRODUCTS = [
     price: 3360,
     originalPrice: null,
     note: "",
-    image: "S21",
+    image: "S21.jpg",
     desc: "具有高效保濕因子、抗氧化、抑菌，針對脆弱、化學傷害的受損髮提供重新強化結構的修護程序，提升髮質強韌度，使頭髮呈現線條感。",
   },
   {
@@ -129,7 +131,7 @@ const PRODUCTS = [
     price: 1500,
     originalPrice: null,
     note: "",
-    image: "S11",
+    image: "S11.jpg",
     desc: "添加大西洋雪松精油、葡糖酸鋅、甘草酸胺與咖啡因，專為舒緩頭皮不適與日常潔淨設計。",
   },
   {
@@ -140,7 +142,7 @@ const PRODUCTS = [
     price: 2200,
     originalPrice: null,
     note: "",
-    image: "S12",
+    image: "S12.jpg",
     desc: "主打保濕抗氧化與蓬鬆空氣感。核心成分包含水解小麥蛋白、醣基海藻糖、蠟菊萃取液及維他命B5，能深度滋潤並增加髮絲強韌度。",
   },
   {
@@ -151,7 +153,7 @@ const PRODUCTS = [
     price: 2200,
     originalPrice: null,
     note: "",
-    image: "S13",
+    image: "S13.jpg",
     desc: "針對油性、容易扁塌的頭皮與髮絲設計，強調深度清潔毛孔並有效收斂多餘油脂。",
   },
   {
@@ -162,14 +164,15 @@ const PRODUCTS = [
     price: 2200,
     originalPrice: null,
     note: "",
-    image: "S14",
+    image: "S14.jpg",
     desc: "添加大西洋雪松精油、葡糖酸鋅、甘草酸胺與咖啡因，專為舒緩頭皮不適與日常潔淨設計。",
   },
 
-  
 
   // ---------- 潤髮 Conditioner ----------
-   {
+
+
+  {
     category: "conditioner",
     brand: "óben",
     name: "杜勒麗花園護色潤髮素500ml",
@@ -177,7 +180,7 @@ const PRODUCTS = [
     price: 1500,
     originalPrice: null,
     note: "",
-    image: "C5",
+    image: "C5.jpg",
     desc: "主打鎖色、保濕與修護，能有效維持染後髮絲的光澤與柔順。",
   },
   {
@@ -188,12 +191,15 @@ const PRODUCTS = [
     price: 2200,
     originalPrice: null,
     note: "",
-    image: "C6",
+    image: "C6.jpg",
     desc: "主打鎖色、保濕與修護，能有效維持染後髮絲的光澤與柔順。",
   },
 
+
   // ---------- 護髮膜 Treatment ----------
-   {
+
+
+  {
     category: "treatment",
     brand: "TOKIO INKARAMI",
     name: "NEW 金·喚羽凝脂",
@@ -201,7 +207,7 @@ const PRODUCTS = [
     price: 2700,
     originalPrice: null,
     note: "",
-    image: "C9",
+    image: "C9.jpg",
     desc: "具優秀護髮效果的配方成份，搭配獨家配方「外部凝聚結合成分」，可以有效將角蛋白滲透進毛髮內部結合，打造出極致修護能力的洗髮精與護髮產品。",
   },
   {
@@ -212,7 +218,7 @@ const PRODUCTS = [
     price: 2700,
     originalPrice: null,
     note: "",
-    image: "C3",
+    image: "C3.jpg",
     desc: "含摩洛哥堅果油、棕梠油等萃取成分，強效滋養保濕，增加秀髮光澤感。",
   },
   {
@@ -223,7 +229,7 @@ const PRODUCTS = [
     price: 2200,
     originalPrice: null,
     note: "",
-    image: "C11",
+    image: "C11.jpg",
     desc: "由多種角蛋白(修護劑)賦予頭髮韌性並帶來修護效果，利用健康頭髮擁有的脂質成分進行保濕。",
   },
   {
@@ -234,14 +240,14 @@ const PRODUCTS = [
     price: 1700,
     originalPrice: null,
     note: "",
-    image: "C4",
+    image: "C4.jpg",
     desc: "含摩洛哥堅果油、棕梠油等萃取成分，強效滋養保濕，增加秀髮光澤感。",
   },
 
-  
-
   // ---------- 免沖洗 / 精華油 Leave-in & Oil ----------
-    {
+
+
+  {
     category: "leave-in",
     brand: "MILK_SHAKE",
     name: "醇香果油50ML",
@@ -249,7 +255,7 @@ const PRODUCTS = [
     price: 980,
     originalPrice: null,
     note: "",
-    image: "O2",
+    image: "O2.jpg",
     desc: "有機堅果含有高單位的脂肪酸，具有對肌膚與頭髮滋潤修復的特性，能保護頭髮免於環境因子的傷害。",
   },
   {
@@ -260,7 +266,7 @@ const PRODUCTS = [
     price: 880,
     originalPrice: null,
     note: "",
-    image: "C10",
+    image: "C10.jpg",
     desc: "各種髮質適用，可收斂無法緊閉的髮絲，同時補充大量質感成分，可調節水分、油份平衡。",
   },
   {
@@ -271,7 +277,7 @@ const PRODUCTS = [
     price: 1760,
     originalPrice: null,
     note: "",
-    image: "O8",
+    image: "O8.webp",
     desc: "高度光澤滋養油，含有松露油、澳洲胡桃果油、摩洛哥堅果油、絲蛋白與天然防曬成分，其中護色因子能抵禦外在環境因素，適用於所有髮質。",
   },
   {
@@ -282,7 +288,7 @@ const PRODUCTS = [
     price: 1900,
     originalPrice: null,
     note: "",
-    image: "C8",
+    image: "C8.jpg",
     desc: "噴霧型的免沖洗護髮產品。立即補充修護頭髮角蛋白、油份、水份，賦予頭髮保濕、柔順、光澤與彈性的最佳狀態。",
   },
   {
@@ -293,7 +299,7 @@ const PRODUCTS = [
     price: 1100,
     originalPrice: null,
     note: "",
-    image: "C14",
+    image: "C14.jpg",
     desc: "抑制毛燥、維持長效水潤感，將水分緊緊鎖在秀髮裡長效水潤保護秀髮不再乾燥。",
   },
   {
@@ -304,7 +310,7 @@ const PRODUCTS = [
     price: 1700,
     originalPrice: null,
     note: "",
-    image: "C12",
+    image: "C12.jpg",
     desc: "絲蛋白（保濕劑）與角鯊烷（保濕劑）賦予毛鱗片滋潤，打造手指滑過時的輕盈質感。富勒烯與頭髮保護成分防止紫外線造成的傷害。",
   },
   {
@@ -315,12 +321,13 @@ const PRODUCTS = [
     price: 1050,
     originalPrice: null,
     note: "",
-    image: "O5",
+    image: "O5.jpg",
     desc: "結合3大高效護髮功效—熱反應修護・鎖色護色・水潤屏障，能針對多重髮質損傷進行全方位的修護保養。",
   },
 
-
   // ---------- 造型 Styling ----------
+
+
   {
     category: "styling",
     brand: "FIOLE",
@@ -329,7 +336,7 @@ const PRODUCTS = [
     price: 950,
     originalPrice: null,
     note: "",
-    image: "Z13",
+    image: "Z13.jpg",
     desc: "能控制髮量豐厚及輕薄，打造柔和空氣感的輕爽型髮蠟。",
   },
   {
@@ -340,7 +347,7 @@ const PRODUCTS = [
     price: 1100,
     originalPrice: null,
     note: "",
-    image: "Z2",
+    image: "Z2.jpg",
     desc: "專為捲髮打造的造型品，鎖住頭髮水份且抗毛燥，提供捲髮柔順修護效果。",
   },
   {
@@ -351,7 +358,7 @@ const PRODUCTS = [
     price: 1080,
     originalPrice: null,
     note: "",
-    image: "Z3",
+    image: "Z3.webp",
     desc: "專為細軟髮設計的霧面塑型造型品， 好清洗、好塑型、不黏膩，適合自然蓬鬆感的造型。",
   },
   {
@@ -362,7 +369,7 @@ const PRODUCTS = [
     price: 1080,
     originalPrice: null,
     note: "",
-    image: "Z4",
+    image: "Z4.jpg",
     desc: "強力量感定型噴霧，定型力佳，可讓髮型長效維持，定型後仍保有柔軟的髮質觸感，適合做為強效定型的最後一道步驟。",
   },
   {
@@ -373,7 +380,7 @@ const PRODUCTS = [
     price: 780,
     originalPrice: null,
     note: "",
-    image: "Z5",
+    image: "Z5.jpg",
     desc: "能立即瞬效定型的造型噴霧。幾乎不含水分的質地可避免影響髮型濕度與重量，維持造型。",
   },
   {
@@ -384,7 +391,7 @@ const PRODUCTS = [
     price: 1200,
     originalPrice: null,
     note: "",
-    image: "Z1",
+    image: "Z1.jpg",
     desc: "提供頭髮整天所需滋潤，含有豐富的維他命以及胺基酸可達到修護滋養功效。可鎖住頭髮水份，完美快速讓捲髮重新塑型，不需要沖水的造型修護素。",
   },
   {
@@ -395,7 +402,7 @@ const PRODUCTS = [
     price: 900,
     originalPrice: null,
     note: "",
-    image: "M7",
+    image: "M7.jpg",
     desc: "",
   },
   {
@@ -406,7 +413,7 @@ const PRODUCTS = [
     price: 1320,
     originalPrice: null,
     note: "",
-    image: "M8",
+    image: "M8.jpg",
     desc: "質地輕盈的慕絲狀造型品，主打不黏膩、具備獨家記形科技，能長時間維持秀髮的豐盈、支撐感與捲度。",
   },
   {
@@ -417,7 +424,7 @@ const PRODUCTS = [
     price: 1050,
     originalPrice: null,
     note: "",
-    image: "O4",
+    image: "O4.jpg",
     desc: "超高壓處理的三種植物精油，輕盈不黏膩，瞬時滋潤髮絲，打造健康彈潤秀髮。",
   },
   {
@@ -428,7 +435,7 @@ const PRODUCTS = [
     price: 880,
     originalPrice: null,
     note: "",
-    image: "M1",
+    image: "M1.webp",
     desc: "乾性髮質適用，維持髮絲保濕平衡，呈現柔軟光澤好梳理。",
   },
   {
@@ -439,7 +446,7 @@ const PRODUCTS = [
     price: 880,
     originalPrice: null,
     note: "",
-    image: "M3",
+    image: "M3.jpg",
     desc: "乾性髮質適用，維持髮絲保濕平衡，呈現柔軟光澤好梳理。",
   },
   {
@@ -450,7 +457,7 @@ const PRODUCTS = [
     price: 950,
     originalPrice: null,
     note: "",
-    image: "Z8",
+    image: "Z8.jpg",
     desc: "以吹風機吹整出輕盈造型的軟式髮蠟，呈現自然動感線條。",
   },
   {
@@ -461,7 +468,7 @@ const PRODUCTS = [
     price: 680,
     originalPrice: null,
     note: "",
-    image: "M5",
+    image: "M5.jpg",
     desc: "極致光澤，閃亮Q彈。緊密貼合每一根髮絲，賦予恰到好處的定型力，同時帶來絲質滑順與波峰感。",
   },
   {
@@ -472,7 +479,7 @@ const PRODUCTS = [
     price: 680,
     originalPrice: null,
     note: "",
-    image: "M6",
+    image: "M6.jpg",
     desc: "自然垂落的垂墜感，搖曳感。在抑制毛躁不僵硬，展現出光澤與水潤的捲髮造型。",
   },
   {
@@ -483,7 +490,7 @@ const PRODUCTS = [
     price: 950,
     originalPrice: null,
     note: "",
-    image: "Z7",
+    image: "Z7.jpg",
     desc: "讓髮根持久站立，長時間維持的超強力硬式髮蠟，速乾、具乾爽感。",
   },
   {
@@ -494,13 +501,14 @@ const PRODUCTS = [
     price: 1180,
     originalPrice: null,
     note: "",
-    image: "M4",
+    image: "M4.webp",
     desc: "有效撫平毛躁，打造蓬鬆捲度，提升髮絲彈性與輪廓感，中度定型力。",
   },
 
-
   // ---------- 矯色洗髮露 Color Shampoo ----------
-    {
+
+
+  {
     category: "color",
     brand: "FIOLE",
     name: "露西亞增色髮露-奶霜棕250ML",
@@ -508,7 +516,7 @@ const PRODUCTS = [
     price: 800,
     originalPrice: null,
     note: "",
-    image: "L9",
+    image: "L9.jpg",
     desc: "延續灰色特有的髮色質感，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -519,7 +527,7 @@ const PRODUCTS = [
     price: 1050,
     originalPrice: null,
     note: "",
-    image: "L8",
+    image: "L8.jpg",
     desc: "延續灰色特有的髮色質感，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -530,7 +538,7 @@ const PRODUCTS = [
     price: 800,
     originalPrice: null,
     note: "",
-    image: "L6",
+    image: "L6.jpg",
     desc: "抵銷高明度髮色中的橘、黃色素，矯色避免枯黃跑色，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -541,7 +549,7 @@ const PRODUCTS = [
     price: 800,
     originalPrice: null,
     note: "",
-    image: "L5",
+    image: "L5.jpg",
     desc: "延續有華麗感的橘色髮色，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -552,7 +560,7 @@ const PRODUCTS = [
     price: 800,
     originalPrice: null,
     note: "",
-    image: "L4",
+    image: "L4.jpg",
     desc: "增強粉色調，延長髮色的持久性，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -563,7 +571,7 @@ const PRODUCTS = [
     price: 1050,
     originalPrice: null,
     note: "",
-    image: "L3",
+    image: "L3.jpg",
     desc: "抵銷高明度髮色中的橘、黃色素，矯色避免枯黃跑色，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -574,7 +582,7 @@ const PRODUCTS = [
     price: 1050,
     originalPrice: null,
     note: "",
-    image: "L2",
+    image: "L2.jpg",
     desc: "延續有華麗感的橘色髮色，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -585,7 +593,7 @@ const PRODUCTS = [
     price: 800,
     originalPrice: null,
     note: "",
-    image: "L10",
+    image: "L10.jpg",
     desc: "咖啡色系髮色專用，打造清透棕色效果、延續咖啡色的質感，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -596,7 +604,7 @@ const PRODUCTS = [
     price: 1050,
     originalPrice: null,
     note: "",
-    image: "L1",
+    image: "L1.jpg",
     desc: "增強粉色調，延長髮色的持久性，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
   {
@@ -607,12 +615,12 @@ const PRODUCTS = [
     price: 800,
     originalPrice: null,
     note: "",
-    image: "L7",
+    image: "L7.jpg",
     desc: "增強粉色調，延長髮色的持久性，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
   },
 
-  
   // ---------- 頭皮養護 Scalp Care ----------
+
   {
     category: "scalp",
     brand: "VIRTUE",
@@ -621,7 +629,11 @@ const PRODUCTS = [
     price: 1780,
     originalPrice: null,
     note: "限量",
-    image: "C1",
+    image: "C1.jpg",
     desc: "為疲勞的毛囊補充能量，滋養脆弱及新生髮，使髮絲增厚並茁壯生長。",
   },
+
+
+
+
 ];
