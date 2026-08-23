@@ -513,7 +513,7 @@ const PRODUCTS = [
   name: "露西亞增色髮露-奶霜棕",
   variants: [
     { spec: "250ML", price: 800 },
-    { spec: "1000ML", price: 1050 },
+    { spec: "1000ML", price: 2100 },
   ],
   note: "",
   image: "L9.jpg",
@@ -525,7 +525,7 @@ const PRODUCTS = [
         name: "露西亞增色髮露-清水灰",
         variants: [
           { spec: "250ML", price: 800 },
-          { spec: "1000ML", price: 1050 },
+          { spec: "1000ML", price: 2100 },
               ],
         note: "",
         image: "L8.jpg",
@@ -537,7 +537,7 @@ const PRODUCTS = [
         name: "露西亞增色髮露-極光紫",
         variants: [
           { spec: "250ML", price: 800 },
-          { spec: "1000ML", price: 1050 },
+          { spec: "1000ML", price: 2100 },
               ],
         note: "",
         image: "L6.jpg",
@@ -549,7 +549,7 @@ const PRODUCTS = [
         name: "露西亞增色髮露-琥珀橘",
         variants: [
           { spec: "250ML", price: 800 },
-          { spec: "1000ML", price: 1050 },
+          { spec: "1000ML", price: 2100 },
               ],
         note: "",
         image: "L5.jpg",
@@ -561,7 +561,7 @@ const PRODUCTS = [
         name: "露西亞增色髮露-仙氣粉",
         variants: [
           { spec: "250ML", price: 800 },
-          { spec: "1000ML", price: 1050 },
+          { spec: "1000ML", price: 2100 },
               ],
         note: "",
         image: "L4.jpg",
@@ -573,7 +573,7 @@ const PRODUCTS = [
         name: "露西亞增色髮露-布朗棕",
         variants: [
           { spec: "250ML", price: 800 },
-          { spec: "1000ML", price: 1050 },
+          { spec: "1000ML", price: 2100 },
               ],
         note: "",
         image: "L10.jpg",
