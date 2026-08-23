@@ -507,74 +507,19 @@ const PRODUCTS = [
 
   // ---------- 矯色洗髮露 Color Shampoo ----------
 
-
-  {
-    category: "color",
-    brand: "FIOLE",
-    name: "露西亞增色髮露-奶霜棕250ML/1000ML",
-    spec: "250ml/1000ml",
-    price: 800~1050,
-    originalPrice: null,
-    note: "",
-    image: "L9.jpg",
-    desc: "延續灰色特有的髮色質感，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
-  },
-  {
-    category: "color",
-    brand: "FIOLE",
-    name: "露西亞增色髮露-清水灰250ML/1000ML",
-    spec: "250ml/1000ml",
-    price: 800~1050,
-    originalPrice: null,
-    note: "",
-    image: "L8.jpg",
-    desc: "延續灰色特有的髮色質感，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
-  },
-  {
-    category: "color",
-    brand: "FIOLE",
-    name: "露西亞增色髮露-極光紫250ML/1000ML",
-    spec: "250ml/1000ml",
-    price: 800~1050,
-    originalPrice: null,
-    note: "",
-    image: "L6.jpg",
-    desc: "抵銷高明度髮色中的橘、黃色素，矯色避免枯黃跑色，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
-  },
-  {
-    category: "color",
-    brand: "FIOLE",
-    name: "露西亞增色髮露-琥珀橘250ML/1000ML",
-    spec: "250ml/1000ml",
-    price: 800~1050,
-    originalPrice: null,
-    note: "",
-    image: "L5.jpg",
-    desc: "延續有華麗感的橘色髮色，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
-  },
-  {
-    category: "color",
-    brand: "FIOLE",
-    name: "露西亞增色髮露-仙氣粉250ML/1000ML",
-    spec: "250ml/1000ml",
-    price: 800~1050,
-    originalPrice: null,
-    note: "",
-    image: "L4.jpg",
-    desc: "增強粉色調，延長髮色的持久性，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
-  },
-  {
-    category: "color",
-    brand: "FIOLE",
-    name: "露西亞增色髮露-布朗棕250ML/1000ML",
-    spec: "250ml/1000ml",
-    price: 800~1050,
-    originalPrice: null,
-    note: "",
-    image: "L10.jpg",
-    desc: "咖啡色系髮色專用，打造清透棕色效果、延續咖啡色的質感，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
-  },
-
+{
+  category: "color",
+  brand: "FIOLE",
+  name: "露西亞增色髮露-奶霜棕",
+  variants: [
+    { spec: "250ML", price: 800 },
+    { spec: "1000ML", price: 1050 },
+  ],
+  note: "",
+  image: "L9.jpg",
+  desc: "延續灰色特有的髮色質感，採用胺基酸系清潔配方，溫柔修護重複染髮造成的頭髮及頭皮傷害。",
+},
+ 
   // ---------- 頭皮養護 Scalp Care ----------
 
   {
