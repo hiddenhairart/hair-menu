@@ -218,7 +218,7 @@ const PRODUCTS = [
     price: 2700,
     originalPrice: null,
     note: "",
-    image: "C3.jpg",
+    image: "C3.png",
     desc: "含摩洛哥堅果油、棕梠油等萃取成分，強效滋養保濕，增加秀髮光澤感。",
   },
   {
@@ -232,17 +232,7 @@ const PRODUCTS = [
     image: "C11.jpg",
     desc: "由多種角蛋白(修護劑)賦予頭髮韌性並帶來修護效果，利用健康頭髮擁有的脂質成分進行保濕。",
   },
-  {
-    category: "treatment",
-    brand: "SUITE",
-    name: "滋養髮膜500ml",
-    spec: "500ml",
-    price: 1700,
-    originalPrice: null,
-    note: "",
-    image: "C4.jpg",
-    desc: "含摩洛哥堅果油、棕梠油等萃取成分，強效滋養保濕，增加秀髮光澤感。",
-  },
+
 
   // ---------- 免沖洗 / 精華油 Leave-in & Oil ----------
 
