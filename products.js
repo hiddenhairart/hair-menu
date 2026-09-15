@@ -194,6 +194,17 @@ const PRODUCTS = [
     image: "C6.jpg",
     desc: "主打鎖色、保濕與修護，能有效維持染後髮絲的光澤與柔順。",
   },
+   {
+    category: "conditioner",
+    brand: "EDNA",
+    name: "恬栗賦活護髮乳500ml",
+    spec: "500ml",
+    price: 980,
+    originalPrice: null,
+    note: "",
+    image: "C16.jpg",
+    desc: "複合式胺基酸、水解小麥蛋白與植萃成分，強化頭髮的強韌與柔順度。",
+  },
 
 
   // ---------- 護髮膜 Treatment ----------
