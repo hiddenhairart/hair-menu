@@ -38,7 +38,7 @@ const PRODUCTS = [
 {
     category: "shampoo",
     brand: "EDNA",
-    name: "賦檸洗髮露 500ML",
+    name: "賦檸洗髮露",
     spec: "500ml",
     price: 980,
     originalPrice: null,
@@ -93,7 +93,7 @@ const PRODUCTS = [
   {
     category: "shampoo",
     brand: "OOLABOO",
-    name: "歐拉布-綠竹重建洗髮精1000ML",
+    name: "歐拉布-綠竹重建洗髮精",
     spec: "1000ml",
     price: 3360,
     originalPrice: null,
@@ -104,7 +104,7 @@ const PRODUCTS = [
   {
     category: "shampoo",
     brand: "óben",
-    name: "巴黎高牆保濕洗髮露500ML/800ML",
+    name: "巴黎高牆保濕洗髮露",
     variants: [
           { spec: "500ML", price: 1500 },
           { spec: "800ML", price: 2200 },
@@ -116,7 +116,7 @@ const PRODUCTS = [
   {
     category: "shampoo",
     brand: "óben",
-    name: "塞納河畔控油洗髮露500ML/800ML",
+    name: "塞納河畔控油洗髮露",
     variants: [
           { spec: "500ML", price: 1500 },
           { spec: "800ML", price: 2200 },
@@ -128,7 +128,7 @@ const PRODUCTS = [
   {
     category: "shampoo",
     brand: "óben",
-    name: "盧森堡公園舒敏洗髮露500ML/800ML",
+    name: "盧森堡公園舒敏洗髮露",
    variants: [
           { spec: "500ML", price: 1500 },
           { spec: "800ML", price: 2200 },
