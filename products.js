@@ -145,7 +145,7 @@ const PRODUCTS = [
   {
     category: "conditioner",
     brand: "óben",
-    name: "杜勒麗花園護色潤髮素500ml",
+    name: "杜勒麗花園護色潤髮素",
     spec: "500ml",
     price: 1500,
     originalPrice: null,
@@ -156,7 +156,7 @@ const PRODUCTS = [
   {
     category: "conditioner",
     brand: "óben",
-    name: "杜勒麗花園護色潤髮素800ml",
+    name: "杜勒麗花園護色潤髮素",
     spec: "800ml",
     price: 2200,
     originalPrice: null,
@@ -167,7 +167,7 @@ const PRODUCTS = [
    {
     category: "conditioner",
     brand: "EDNA",
-    name: "恬栗賦活護髮乳500ml",
+    name: "恬栗賦活護髮乳",
     spec: "500ml",
     price: 980,
     originalPrice: null,
@@ -194,7 +194,7 @@ const PRODUCTS = [
   {
     category: "treatment",
     brand: "SUITE",
-    name: "滋養髮膜1000ml",
+    name: "滋養髮膜",
     spec: "1000ml",
     price: 2700,
     originalPrice: null,
@@ -287,7 +287,7 @@ const PRODUCTS = [
   {
     category: "leave-in",
     brand: "napla N.",
-    name: "N多重修護滋養油 150ML",
+    name: "N多重修護滋養油",
     spec: "150ml",
     price: 1050,
     originalPrice: null,
