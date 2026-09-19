@@ -3,484 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>髮品電子菜單</title>
-<style>
-  :root{
-    --bg:#ffffff;
-    --panel:#fafaf9;
-    --card:#ffffff;
-    --gold:#b8935a;
-    --gold-soft:#8d7647;
-    --text:#333333;
-    --text-dim:#828282;
-    --line:#e5e2dc;
-    --danger:#b5563e;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
-    min-height:100vh;
-  }
-  header{
-    padding:40px 24px 20px;
-    text-align:center;
-    border-bottom:1px solid var(--line);
-  }
-  header .eyebrow{
-    letter-spacing:.35em;
-    font-size:12px;
-    color:var(--gold);
-    text-transform:uppercase;
-  }
-  header h1{
-    margin:10px 0 6px;
-    font-size:clamp(28px,4vw,44px);
-    font-weight:600;
-    letter-spacing:.08em;
-  }
-  header p{
-    margin:0;
-    color:var(--text-dim);
-    font-size:14px;
-    letter-spacing:.05em;
-  }
-
-  nav.tabs{
-    position:sticky;
-    top:0;
-    z-index:10;
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    justify-content:center;
-    padding:16px 20px;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-  }
-  nav.tabs button{
-    font-family:inherit;
-    background:transparent;
-    border:1px solid var(--line);
-    color:var(--text-dim);
-    padding:10px 20px;
-    border-radius:999px;
-    font-size:14px;
-    letter-spacing:.08em;
-    cursor:pointer;
-    transition:.2s;
-  }
-  nav.tabs button:hover{
-    border-color:var(--gold-soft);
-    color:var(--text);
-  }
-  nav.tabs button.active{
-    background:var(--gold);
-    border-color:var(--gold);
-    color:#141210;
-    font-weight:600;
-  }
-
-  main{
-    max-width:1280px;
-    margin:0 auto;
-    padding:36px 20px 80px;
-  }
-  section.category{
-    margin-bottom:56px;
-  }
-  section.category h2{
-    font-size:20px;
-    letter-spacing:.12em;
-    color:var(--gold);
-    border-bottom:1px solid var(--line);
-    padding-bottom:12px;
-    margin:0 0 24px;
-  }
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-    gap:20px;
-  }
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:14px;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    box-shadow:0 1px 4px rgba(0,0,0,.04);
-    transition:transform .2s, border-color .2s, box-shadow .2s;
-  }
-  .card:hover{
-    transform:translateY(-4px);
-    border-color:var(--gold-soft);
-    box-shadow:0 10px 24px rgba(0,0,0,.08);
-  }
-  .card .badge{
-    position:absolute;
-    top:12px;
-    left:12px;
-    background:var(--gold);
-    color:#141210;
-    font-size:11px;
-    letter-spacing:.08em;
-    padding:4px 10px;
-    border-radius:999px;
-    font-weight:700;
-  }
-  .card .discount-badge{
-    position:absolute;
-    top:12px;
-    right:12px;
-    background:var(--danger);
-    color:#fff;
-    font-size:11px;
-    letter-spacing:.05em;
-    padding:4px 10px;
-    border-radius:999px;
-    font-weight:700;
-  }
-  .card .img-wrap{
-    background:#fff;
-    border-bottom:1px solid var(--line);
-    height:220px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:16px;
-    cursor:pointer;
-  }
-  .card .img-wrap img{
-    max-height:100%;
-    max-width:100%;
-    object-fit:contain;
-  }
-  .card .info{
-    padding:16px 18px 18px;
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-    flex:1;
-  }
-  .card .brand{
-    font-size:12px;
-    letter-spacing:.15em;
-    color:var(--gold);
-    text-transform:uppercase;
-  }
-  .card .name{
-    font-size:16px;
-    line-height:1.4;
-    color:var(--text);
-  }
-  .card .spec{
-    font-size:12px;
-    color:var(--text-dim);
-    margin-bottom:8px;
-  }
-  .card .price-row{
-    margin-top:auto;
-    display:flex;
-    align-items:baseline;
-    gap:8px;
-  }
-  .card .price{
-    font-size:20px;
-    font-weight:700;
-    color:var(--text);
-    letter-spacing:.03em;
-  }
-  .card .price::before{
-    content:"NT$ ";
-    font-size:12px;
-    color:var(--text-dim);
-    font-weight:400;
-  }
-  .card .original{
-    font-size:13px;
-    color:var(--text-dim);
-    text-decoration:line-through;
-  }
-
-  footer{
-    text-align:center;
-    padding:30px 20px 50px;
-    color:var(--text-dim);
-    font-size:12px;
-    letter-spacing:.08em;
-  }
-
-  @media (max-width:480px){
-    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
-    .card .img-wrap{height:160px;}
-  }
-
-  .modal-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(30,28,26,.55);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
-    z-index:100;
-  }
-  .modal-overlay.open{
-    display:flex;
-  }
-  .modal{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:16px;
-    max-width:640px;
-    width:100%;
-    max-height:88vh;
-    overflow-y:auto;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    box-shadow:0 24px 60px rgba(0,0,0,.18);
-  }
-  .modal .modal-close{
-    position:absolute;
-    top:14px;
-    right:14px;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    border:1px solid var(--line);
-    background:var(--panel);
-    color:var(--text);
-    font-size:18px;
-    line-height:1;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .modal .modal-img{
-    background:#fff;
-    border-bottom:1px solid var(--line);
-    padding:30px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:260px;
-  }
-  .modal .modal-img img{
-    max-height:320px;
-    max-width:100%;
-    object-fit:contain;
-  }
-  .modal .modal-body{
-    padding:24px 28px 30px;
-  }
-  .modal .modal-brand{
-    font-size:12px;
-    letter-spacing:.18em;
-    color:var(--gold);
-    text-transform:uppercase;
-  }
-  .modal .modal-name{
-    font-size:22px;
-    margin:8px 0 4px;
-    line-height:1.4;
-  }
-  .modal .modal-spec{
-    font-size:13px;
-    color:var(--text-dim);
-    margin-bottom:16px;
-  }
-  .modal .modal-price-row{
-    display:flex;
-    align-items:baseline;
-    gap:10px;
-    margin-bottom:18px;
-  }
-  .modal .modal-price{
-    font-size:24px;
-    font-weight:700;
-  }
-  .modal .modal-price::before{
-    content:"NT$ ";
-    font-size:13px;
-    color:var(--text-dim);
-    font-weight:400;
-  }
-  .modal .modal-original{
-    font-size:14px;
-    color:var(--text-dim);
-    text-decoration:line-through;
-  }
-  .modal .modal-desc{
-    font-size:14px;
-    line-height:1.9;
-    color:var(--text);
-    border-top:1px solid var(--line);
-    padding-top:16px;
-  }
-</style>
+<title>HIDDEN Hair Design 商品目錄</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
 </head>
 <body>
-
 <header>
-  <div class="eyebrow">Hair Care Menu</div>
-  <h1>髮品電子菜單</h1>
-  <p id="updated-note">價格請洽櫃檯 · 內容如有調整恕不另行通知</p>
+  <h1>HIDDEN Hair Design｜商品目錄</h1>
+  <div class="tabs" id="tabs"></div>
 </header>
+<main>
+  <div id="grid" class="grid"></div>
+  <div id="empty" class="empty" style="display:none">目前沒有商品</div>
+</main>
 
-<nav class="tabs" id="tabs"></nav>
-
-<main id="main"></main>
-
-<footer>© 本菜單內容可隨時更新，僅供店內展示使用</footer>
-
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal" id="modal">
-    <button class="modal-close" id="modal-close" aria-label="關閉">&times;</button>
-    <div class="modal-img"><img id="modal-img" src="" alt=""></div>
-    <div class="modal-body">
-      <div class="modal-brand" id="modal-brand"></div>
-      <div class="modal-name" id="modal-name"></div>
-      <div class="modal-spec" id="modal-spec"></div>
-      <div class="modal-price-row">
-        <span class="modal-price" id="modal-price"></span>
-        <span class="modal-original" id="modal-original"></span>
-      </div>
-      <div class="modal-desc" id="modal-desc"></div>
-    </div>
-  </div>
-</div>
-
-<script src="products.js"></script>
 <script>
-(function(){
-  const main = document.getElementById('main');
-  const tabsEl = document.getElementById('tabs');
+const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+let allProducts = [];
+let activeCategory = "全部";
 
-  function money(n){
-    return Number(n).toLocaleString('en-US');
+function fmtPrice(p){
+  return "NT$" + Number(p).toLocaleString();
+}
+
+function imageUrl(path){
+  if(!path) return null;
+  const { data } = sb.storage.from("product-images").getPublicUrl(path);
+  return data.publicUrl;
+}
+
+function render(){
+  const cats = ["全部", ...Array.from(new Set(allProducts.map(p => p.category || "未分類")))];
+  const tabsEl = document.getElementById("tabs");
+  tabsEl.innerHTML = cats.map(c =>
+    `<button class="tab ${c===activeCategory?'active':''}" data-cat="${c}">${c}</button>`
+  ).join("");
+  tabsEl.querySelectorAll(".tab").forEach(btn=>{
+    btn.onclick = ()=>{ activeCategory = btn.dataset.cat; render(); };
+  });
+
+  const list = activeCategory === "全部" ? allProducts : allProducts.filter(p => (p.category||"未分類") === activeCategory);
+  const gridEl = document.getElementById("grid");
+  const emptyEl = document.getElementById("empty");
+
+  if(list.length === 0){
+    gridEl.innerHTML = "";
+    emptyEl.style.display = "block";
+    return;
   }
+  emptyEl.style.display = "none";
 
-  // 整理一個商品要顯示的規格文字／價格文字／折扣資訊。
-  // 一般商品（單一容量、單一價格）：讀 spec / price / originalPrice。
-  // 多容量商品（例如 250ML/1000ML 兩種價格）：讀 variants 陣列，自動組成
-  // 「250ML / 1000ML」「NT$ 800 / 1,050」，這類商品目前不顯示折扣標籤。
-  function getDisplay(p){
-    if(p.variants && p.variants.length){
-      return {
-        specText: p.variants.map(v => v.spec).join(' / '),
-        priceText: p.variants.map(v => money(v.price)).join(' / '),
-        hasDiscount: false,
-        discountPct: null,
-        originalText: ''
-      };
-    }
-    const hasDiscount = p.originalPrice && p.originalPrice > p.price;
-    return {
-      specText: p.spec,
-      priceText: money(p.price),
-      hasDiscount,
-      discountPct: hasDiscount ? Math.round((p.price / p.originalPrice) * 10) : null,
-      originalText: hasDiscount ? money(p.originalPrice) : ''
-    };
-  }
-
-  function renderCard(p){
-    const d = getDisplay(p);
+  gridEl.innerHTML = list.map(p=>{
+    const url = imageUrl(p.image_path);
+    const hasDiscount = p.discount_price != null && Number(p.discount_price) < Number(p.price);
     return `
       <div class="card">
-        ${p.note ? `<div class="badge">${p.note}</div>` : ''}
-        ${d.hasDiscount ? `<div class="discount-badge">${d.discountPct}折</div>` : ''}
-        <div class="img-wrap" data-image="${p.image}"><img src="images/${p.image}" alt="${p.brand} ${p.name}" loading="lazy"></div>
-        <div class="info">
-          <div class="brand">${p.brand}</div>
+        <div class="thumb">
+          ${url ? `<img src="${url}" alt="${p.name}" loading="lazy">` : `<span class="ph">尚無圖片</span>`}
+        </div>
+        <div class="body">
           <div class="name">${p.name}</div>
-          <div class="spec">${d.specText}</div>
+          ${p.description ? `<div class="desc">${p.description}</div>` : ""}
           <div class="price-row">
-            <span class="price">${d.priceText}</span>
-            ${d.hasDiscount ? `<span class="original">NT$ ${d.originalText}</span>` : ''}
+            <span class="price">${fmtPrice(hasDiscount ? p.discount_price : p.price)}</span>
+            ${hasDiscount ? `<span class="price original">${fmtPrice(p.price)}</span>` : ""}
           </div>
         </div>
       </div>`;
+  }).join("");
+}
+
+async function load(){
+  const { data, error } = await sb
+    .from("products")
+    .select("*")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: false });
+  if(error){
+    document.getElementById("grid").innerHTML = "";
+    document.getElementById("empty").style.display = "block";
+    document.getElementById("empty").textContent = "讀取失敗，請稍後再試";
+    console.error(error);
+    return;
   }
+  allProducts = data || [];
+  render();
+}
 
-  // ---- 產品簡介彈出視窗 (modal) ----
-  const overlay = document.getElementById('modal-overlay');
-  const modalClose = document.getElementById('modal-close');
-
-  function openModal(p){
-    const d = getDisplay(p);
-    document.getElementById('modal-img').src = 'images/' + p.image;
-    document.getElementById('modal-img').alt = p.brand + ' ' + p.name;
-    document.getElementById('modal-brand').textContent = p.brand;
-    document.getElementById('modal-name').textContent = p.name;
-    document.getElementById('modal-spec').textContent = d.specText;
-    document.getElementById('modal-price').textContent = d.priceText;
-    document.getElementById('modal-original').textContent = d.hasDiscount ? ('NT$ ' + d.originalText) : '';
-    document.getElementById('modal-desc').textContent = p.desc || '（尚未填寫產品簡介，可至 products.js 的 desc 欄位補上）';
-    overlay.classList.add('open');
-  }
-
-  function closeModal(){
-    overlay.classList.remove('open');
-  }
-
-  modalClose.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => {
-    if(e.target === overlay) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeModal();
-  });
-
-  function renderAll(){
-    main.innerHTML = CATEGORIES.map(cat => {
-      const items = PRODUCTS.filter(p => p.category === cat.id);
-      if(items.length === 0) return '';
-      return `
-        <section class="category" id="cat-${cat.id}">
-          <h2>${cat.name}</h2>
-          <div class="grid">${items.map(renderCard).join('')}</div>
-        </section>`;
-    }).join('');
-
-    main.querySelectorAll('.img-wrap').forEach(el => {
-      el.addEventListener('click', () => {
-        const p = PRODUCTS.find(item => item.image === el.dataset.image);
-        if(p) openModal(p);
-      });
-    });
-
-    tabsEl.innerHTML = `<button data-target="all" class="active">全部</button>` +
-      CATEGORIES.filter(cat => PRODUCTS.some(p => p.category === cat.id))
-        .map(cat => `<button data-target="cat-${cat.id}">${cat.name}</button>`).join('');
-
-    tabsEl.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabsEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const target = btn.dataset.target;
-        if(target === 'all'){
-          document.querySelectorAll('section.category').forEach(s => s.style.display = '');
-          window.scrollTo({top:0, behavior:'smooth'});
-        } else {
-          document.querySelectorAll('section.category').forEach(s => s.style.display = 'none');
-          const el = document.getElementById(target);
-          if(el){ el.style.display = ''; el.scrollIntoView({behavior:'smooth', block:'start'}); }
-        }
-      });
-    });
-  }
-
-  renderAll();
-})();
+load();
 </script>
-
 </body>
 </html>

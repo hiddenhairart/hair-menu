@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>後台管理｜HIDDEN Hair Design</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+</head>
+<body>
+
+<div id="loginView" class="login-box">
+  <h2>後台登入</h2>
+  <div class="field">
+    <label>帳號 Email</label>
+    <input id="loginEmail" type="email" autocomplete="username">
+  </div>
+  <div class="field">
+    <label>密碼</label>
+    <input id="loginPass" type="password" autocomplete="current-password">
+  </div>
+  <button class="btn-primary" id="loginBtn">登入</button>
+  <div class="err" id="loginErr"></div>
+</div>
+
+<div id="adminView" style="display:none">
+  <header>
+    <div class="admin-header">
+      <h1>商品管理</h1>
+      <div class="who">
+        <span id="whoEmail"></span> ·
+        <a href="#" id="logoutLink" style="color:inherit">登出</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="toolbar">
+      <input id="searchBox" placeholder="搜尋商品名稱...">
+      <select id="filterCat" style="max-width:140px"><option value="">全部分類</option></select>
+    </div>
+    <div class="admin-list" id="list"></div>
+  </main>
+  <div class="fab" id="addBtn">＋</div>
+</div>
+
+<div id="modalRoot"></div>
+
+<script>
+const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+
+const DEFAULT_CATS = ["護髮類","洗髮類","造型類","活動組合","其他"];
+
+let session = null;
+let products = [];
+
+function imageUrl(path){
+  if(!path) return null;
+  const { data } = sb.storage.from("product-images").getPublicUrl(path);
+  return data.publicUrl;
+}
+
+// ---------- auth ----------
+async function checkSession(){
+  const { data } = await sb.auth.getSession();
+  session = data.session;
+  if(session){
+    showAdmin();
+  } else {
+    showLogin();
+  }
+}
+
+function showLogin(){
+  document.getElementById("loginView").style.display = "block";
+  document.getElementById("adminView").style.display = "none";
+}
+
+function showAdmin(){
+  document.getElementById("loginView").style.display = "none";
+  document.getElementById("adminView").style.display = "block";
+  document.getElementById("whoEmail").textContent = session.user.email;
+  loadProducts();
+}
+
+document.getElementById("loginBtn").onclick = async ()=>{
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPass").value;
+  const errEl = document.getElementById("loginErr");
+  errEl.textContent = "";
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  if(error){
+    errEl.textContent = "登入失敗：帳號或密碼錯誤";
+    return;
+  }
+  session = data.session;
+  showAdmin();
+};
+
+document.getElementById("logoutLink").onclick = async (e)=>{
+  e.preventDefault();
+  await sb.auth.signOut();
+  session = null;
+  showLogin();
+};
+
+// ---------- product list ----------
+async function loadProducts(){
+  const { data, error } = await sb.from("products").select("*").order("sort_order").order("created_at",{ascending:false});
+  if(error){ alert("讀取商品失敗：" + error.message); return; }
+  products = data || [];
+  const cats = Array.from(new Set(products.map(p=>p.category).filter(Boolean)));
+  const filterCat = document.getElementById("filterCat");
+  const existing = new Set(Array.from(filterCat.options).map(o=>o.value));
+  cats.forEach(c=>{ if(!existing.has(c)){ const o=document.createElement("option"); o.value=c; o.textContent=c; filterCat.appendChild(o);} });
+  renderList();
+}
+
+function renderList(){
+  const q = document.getElementById("searchBox").value.trim().toLowerCase();
+  const cat = document.getElementById("filterCat").value;
+  let list = products;
+  if(q) list = list.filter(p => p.name.toLowerCase().includes(q));
+  if(cat) list = list.filter(p => p.category === cat);
+
+  const listEl = document.getElementById("list");
+  if(list.length === 0){
+    listEl.innerHTML = `<div class="empty">沒有符合的商品</div>`;
+    return;
+  }
+  listEl.innerHTML = list.map(p=>{
+    const url = imageUrl(p.image_path);
+    return `
+    <div class="row-card">
+      <div class="thumb" style="background:#f1ece6;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center">
+        ${url ? `<img src="${url}" style="width:100%;height:100%;object-fit:cover">` : `<span style="font-size:10px;color:#c9bdb2">無圖片</span>`}
+      </div>
+      <div class="info">
+        <div class="name">${p.name}${p.is_active ? "" : '<span class="badge-off">已下架</span>'}</div>
+        <div class="meta">${p.category || "未分類"} · NT$${p.price}${p.discount_price ? " → NT$" + p.discount_price : ""}</div>
+      </div>
+      <div class="actions">
+        <button class="btn-ghost" onclick="openEdit('${p.id}')">編輯</button>
+        <button class="btn-danger" onclick="removeProduct('${p.id}')">刪除</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+document.getElementById("searchBox").oninput = renderList;
+document.getElementById("filterCat").onchange = renderList;
+
+// ---------- add / edit modal ----------
+function openModal(product){
+  const isEdit = !!product;
+  const p = product || { name:"", category:DEFAULT_CATS[0], price:"", discount_price:"", description:"", image_path:"", is_active:true };
+  const catOptions = DEFAULT_CATS.map(c=>`<option value="${c}" ${p.category===c?"selected":""}>${c}</option>`).join("");
+
+  document.getElementById("modalRoot").innerHTML = `
+  <div class="modal-backdrop" id="backdrop">
+    <div class="modal">
+      <h3>${isEdit ? "編輯商品" : "新增商品"}</h3>
+      <div class="field">
+        <label>商品照片</label>
+        <div id="preview" style="width:100px;height:100px;border-radius:10px;overflow:hidden;background:#f1ece6;margin-bottom:8px;display:flex;align-items:center;justify-content:center">
+          ${p.image_path ? `<img src="${imageUrl(p.image_path)}" style="width:100%;height:100%;object-fit:cover">` : `<span style="font-size:11px;color:#c9bdb2">無圖片</span>`}
+        </div>
+        <input type="file" id="fileInput" accept="image/*">
+        <div class="hint" id="uploadHint"></div>
+      </div>
+      <div class="field"><label>商品名稱</label><input id="fName" value="${p.name.replace(/"/g,'&quot;')}"></div>
+      <div class="field"><label>分類</label><select id="fCategory">${catOptions}</select></div>
+      <div class="field"><label>原價</label><input id="fPrice" type="number" value="${p.price}"></div>
+      <div class="field"><label>特價（選填，留空表示無折扣）</label><input id="fDiscount" type="number" value="${p.discount_price ?? ""}"></div>
+      <div class="field"><label>說明（選填）</label><textarea id="fDesc">${p.description || ""}</textarea></div>
+      <div class="field">
+        <label><input type="checkbox" id="fActive" ${p.is_active ? "checked":""} style="width:auto;display:inline-block;margin-right:6px">上架顯示於顧客目錄</label>
+      </div>
+      <div class="err" id="modalErr"></div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button class="btn-ghost" id="cancelBtn" style="flex:1">取消</button>
+        <button class="btn-primary" id="saveBtn" style="flex:2">${isEdit?"儲存變更":"新增商品"}</button>
+      </div>
+    </div>
+  </div>`;
+
+  let pendingImagePath = p.image_path || null;
+
+  document.getElementById("cancelBtn").onclick = closeModal;
+  document.getElementById("backdrop").onclick = (e)=>{ if(e.target.id==="backdrop") closeModal(); };
+
+  document.getElementById("fileInput").onchange = async (e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    const hint = document.getElementById("uploadHint");
+    hint.textContent = "上傳中...";
+    const ext = file.name.split(".").pop();
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+    const { error } = await sb.storage.from("product-images").upload(path, file, { upsert:false });
+    if(error){ hint.textContent = "上傳失敗：" + error.message; return; }
+    pendingImagePath = path;
+    hint.textContent = "上傳完成";
+    document.getElementById("preview").innerHTML = `<img src="${imageUrl(path)}" style="width:100%;height:100%;object-fit:cover">`;
+  };
+
+  document.getElementById("saveBtn").onclick = async ()=>{
+    const name = document.getElementById("fName").value.trim();
+    const category = document.getElementById("fCategory").value;
+    const price = document.getElementById("fPrice").value;
+    const discount = document.getElementById("fDiscount").value;
+    const description = document.getElementById("fDesc").value.trim();
+    const is_active = document.getElementById("fActive").checked;
+    const errEl = document.getElementById("modalErr");
+
+    if(!name || !price){
+      errEl.textContent = "請填寫商品名稱與原價";
+      return;
+    }
+
+    const payload = {
+      name, category,
+      price: Number(price),
+      discount_price: discount === "" ? null : Number(discount),
+      description: description || null,
+      image_path: pendingImagePath,
+      is_active
+    };
+
+    let error;
+    if(isEdit){
+      ({ error } = await sb.from("products").update(payload).eq("id", p.id));
+    } else {
+      ({ error } = await sb.from("products").insert(payload));
+    }
+    if(error){
+      errEl.textContent = "儲存失敗：" + error.message;
+      return;
+    }
+    closeModal();
+    loadProducts();
+  };
+}
+
+function closeModal(){
+  document.getElementById("modalRoot").innerHTML = "";
+}
+
+window.openEdit = (id)=>{
+  const p = products.find(x=>x.id===id);
+  openModal(p);
+};
+
+window.removeProduct = async (id)=>{
+  if(!confirm("確定要刪除這個商品嗎？此動作無法復原。")) return;
+  const { error } = await sb.from("products").delete().eq("id", id);
+  if(error){ alert("刪除失敗：" + error.message); return; }
+  loadProducts();
+};
+
+document.getElementById("addBtn").onclick = ()=> openModal(null);
+
+checkSession();
+</script>
+</body>
+</html>
